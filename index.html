@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Solar - Ahorro con Paneles Solares</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Ahorro con Paneles Solares</h1>
+        <p>Simula cuánto puedes ahorrar en tu factura eléctrica instalando paneles solares</p>
+        
+        <form id="solarForm">
+            <div class="form-group">
+                <label for="consumo">Consumo mensual promedio (kWh):</label>
+                <input type="number" id="consumo" required min="50" max="1000">
+            </div>
+            
+            <div class="form-group">
+                <label for="estrato">Estrato de vivienda:</label>
+                <select id="estrato" required>
+                    <option value="">Seleccione...</option>
+                    <option value="1">Estrato 1</option>
+                    <option value="2">Estrato 2</option>
+                    <option value="3">Estrato 3</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="municipio">Municipio:</label>
+                <select id="municipio" required>
+                    <option value="">Seleccione...</option>
+                    <!-- Opciones se cargarán desde JavaScript -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="panelArea">Área de paneles (m²):</label>
+                <input type="number" id="panelArea" value="10" min="1" max="100">
+            </div>
+            
+            <button type="submit">Calcular Ahorro</button>
+        </form>
+        
+        <div id="results" class="hidden">
+            <h2>Resultados de tu Simulación</h2>
+            <div class="result-grid">
+                <div class="result-card">
+                    <h3>Energía generada estimada</h3>
+                    <p id="energiaGenerada">-- kWh/mes</p>
+                </div>
+                <div class="result-card">
+                    <h3>Ahorro mensual estimado</h3>
+                    <p id="ahorroMensual">-- $</p>
+                </div>
+                <div class="result-card">
+                    <h3>Reducción en factura</h3>
+                    <p id="reduccion">-- %</p>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="savingsChart"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
