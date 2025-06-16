@@ -22,31 +22,25 @@
                     <option value="3">Estrato 3</option>
                 </select>
             </div>
-            <div class="form-group">
+<!-- CAMBIOOOO✅✅✅✅✅✅✅✅✅✅-->
+                <label for="departamento">Departamento:</label>
+                <select id="departamento" onchange="cargarMunicipios()" required></select>
+        
                 <label for="municipio">Municipio:</label>
-                <select id="municipio" required>
-                    <option value="">Seleccione...</option>
-                    <option value="">Valledupar</option>
-                    <option value="">Barranquilla</option>
-                    <option value="">Bogota</option>
-                    <option value="">Cartagena</option>
-                    <!-- Opciones se cargarán desde JavaScript -->
-                </select>
-            </div>
+                <select id="municipio" required></select>
+
             
             <div class="form-group">
                 <label for="consumo">Consumo mensual actual (kWh):</label>
                 <input type="number" id="consumo" required min="50" max="1000">
                 <small id="consumoPromedio"></small>
             </div>
-            
-            <div class="form-group">
-                <label for="panelArea">Área de paneles (m²):</label>
-                <input type="number" id="panelArea" value="10" min="1" max="100">
-            </div>
-            
+  <!-- CAMBIOOOO✅✅✅✅✅✅✅✅✅✅-->          
             <button type="submit">Calcular Ahorro</button>
         </form>
+
+
+
         
         <div id="results" class="hidden">
             <h2>Resultados de tu Simulación</h2>
