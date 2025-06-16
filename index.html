@@ -14,26 +14,30 @@
         
         <form id="solarForm">
             <div class="form-group">
-                <label for="consumo">Consumo mensual promedio (kWh):</label>
-                <input type="number" id="consumo" required min="50" max="1000">
-            </div>
-            
-            <div class="form-group">
                 <label for="estrato">Estrato de vivienda:</label>
                 <select id="estrato" required>
-                    <option value="">Seleccione...</option>
+                    <option value="">Seleccione su estrato...</option>
                     <option value="1">Estrato 1</option>
                     <option value="2">Estrato 2</option>
                     <option value="3">Estrato 3</option>
                 </select>
             </div>
-            
             <div class="form-group">
                 <label for="municipio">Municipio:</label>
                 <select id="municipio" required>
                     <option value="">Seleccione...</option>
+                    <option value="">Valledupar</option>
+                    <option value="">Barranquilla</option>
+                    <option value="">Bogota</option>
+                    <option value="">Cartagena</option>
                     <!-- Opciones se cargarán desde JavaScript -->
                 </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="consumo">Consumo mensual actual (kWh):</label>
+                <input type="number" id="consumo" required min="50" max="1000">
+                <small id="consumoPromedio"></small>
             </div>
             
             <div class="form-group">
@@ -63,6 +67,13 @@
             
             <div class="chart-container">
                 <canvas id="savingsChart"></canvas>
+            </div>
+            
+            <div class="info-card">
+                <h3>Información de tu estrato</h3>
+                <p><strong>Consumo promedio:</strong> <span id="infoConsumo">-- kWh/mes</span></p>
+                <p><strong>Tarifa eléctrica:</strong> $<span id="infoTarifa">--</span> por kWh</p>
+                <p><strong>Horas de sol promedio:</strong> <span id="infoHorasSol">--</span> horas/día</p>
             </div>
         </div>
     </div>

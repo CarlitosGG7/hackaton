@@ -1,28 +1,18 @@
-// Datos simulados basados en el dataset propuesto
-const municipiosData = {
-    "Valledupar": {
-        "consumo_promedio_kWh": 350,
-        "tarifa_kWh": 850,
+// Datos basados en el CSV proporcionado
+const estratosData = {
+    "1": {
+        "consumo_promedio_kWh": 100,
+        "tarifa_kWh": 250,
         "horas_sol_promedio": 5.2
     },
-    "Bogotá": {
-        "consumo_promedio_kWh": 320,
-        "tarifa_kWh": 920,
-        "horas_sol_promedio": 4.1
+    "2": {
+        "consumo_promedio_kWh": 130,
+        "tarifa_kWh": 300,
+        "horas_sol_promedio": 5.5
     },
-    "Medellín": {
-        "consumo_promedio_kWh": 310,
-        "tarifa_kWh": 880,
-        "horas_sol_promedio": 4.8
-    },
-    "Cali": {
-        "consumo_promedio_kWh": 340,
-        "tarifa_kWh": 870,
-        "horas_sol_promedio": 5.0
-    },
-    "Barranquilla": {
-        "consumo_promedio_kWh": 380,
-        "tarifa_kWh": 830,
+    "3": {
+        "consumo_promedio_kWh": 160,
+        "tarifa_kWh": 350,
         "horas_sol_promedio": 5.8
     }
 };
@@ -32,15 +22,15 @@ const EFICIENCIA_PANEL = 0.18; // 18%
 // Producción por m² de panel (aproximadamente 150W por m²)
 const PRODUCCION_POR_M2 = 0.15; // kW/m²
 
-// Cargar municipios en el select
-document.addEventListener('DOMContentLoaded', function() {
-    const municipioSelect = document.getElementById('municipio');
-    
-    for (const municipio in municipiosData) {
-        const option = document.createElement('option');
-        option.value = municipio;
-        option.textContent = municipio;
-        municipioSelect.appendChild(option);
+// Cargar consumo promedio cuando se seleccione estrato
+document.getElementById('estrato').addEventListener('change', function() {
+    const estrato = this.value;
+    if (estrato) {
+        const consumoPromedio = estratosData[estrato].consumo_promedio_kWh;
+        document.getElementById('consumoPromedio').textContent = `Consumo promedio para estrato ${estrato}: ${consumoPromedio} kWh/mes`;
+        document.getElementById('consumo').value = consumoPromedio;
+    } else {
+        document.getElementById('consumoPromedio').textContent = '';
     }
 });
 
@@ -52,15 +42,15 @@ document.getElementById('solarForm').addEventListener('submit', function(e) {
 
 function calcularAhorro() {
     // Obtener valores del formulario
-    const consumo = parseFloat(document.getElementById('consumo').value);
     const estrato = document.getElementById('estrato').value;
-    const municipio = document.getElementById('municipio').value;
+    const consumo = parseFloat(document.getElementById('consumo').value);
     const panelArea = parseFloat(document.getElementById('panelArea').value);
     
-    // Obtener datos del municipio seleccionado
-    const municipioInfo = municipiosData[municipio];
-    const tarifa = municipioInfo.tarifa_kWh;
-    const horasSol = municipioInfo.horas_sol_promedio;
+    // Obtener datos del estrato seleccionado
+    const estratoInfo = estratosData[estrato];
+    const tarifa = estratoInfo.tarifa_kWh;
+    const horasSol = estratoInfo.horas_sol_promedio;
+    const consumoPromedio = estratoInfo.consumo_promedio_kWh;
     
     // Calcular energía generada (kWh/mes)
     // Fórmula: Horas_sol * Eficiencia_panel * Área * Producción_por_m2 * 30 días
@@ -76,6 +66,11 @@ function calcularAhorro() {
     document.getElementById('energiaGenerada').textContent = `${energiaGenerada.toFixed(2)} kWh/mes`;
     document.getElementById('ahorroMensual').textContent = `$${ahorro.toFixed(2)}`;
     document.getElementById('reduccion').textContent = `${reduccion.toFixed(2)}%`;
+    
+    // Mostrar información del estrato
+    document.getElementById('infoConsumo').textContent = `${consumoPromedio} kWh/mes`;
+    document.getElementById('infoTarifa').textContent = tarifa;
+    document.getElementById('infoHorasSol').textContent = horasSol;
     
     // Mostrar sección de resultados
     document.getElementById('results').classList.remove('hidden');
@@ -94,21 +89,24 @@ function crearGrafico(consumo, energiaGenerada, tarifa, ahorro) {
     
     const consumoActual = consumo * tarifa;
     const consumoConPaneles = (consumo - Math.min(energiaGenerada, consumo)) * tarifa;
+    const ahorroCalculado = consumoActual - consumoConPaneles;
     
     window.solarChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Sin paneles', 'Con paneles solares'],
+            labels: ['Costo actual', 'Costo con paneles', 'Ahorro potencial'],
             datasets: [{
-                label: 'Costo mensual de energía ($)',
-                data: [consumoActual, consumoConPaneles],
+                label: 'Valor en pesos ($)',
+                data: [consumoActual, consumoConPaneles, ahorroCalculado],
                 backgroundColor: [
                     'rgba(231, 76, 60, 0.7)',
-                    'rgba(46, 204, 113, 0.7)'
+                    'rgba(46, 204, 113, 0.7)',
+                    'rgba(52, 152, 219, 0.7)'
                 ],
                 borderColor: [
                     'rgba(231, 76, 60, 1)',
-                    'rgba(46, 204, 113, 1)'
+                    'rgba(46, 204, 113, 1)',
+                    'rgba(52, 152, 219, 1)'
                 ],
                 borderWidth: 1
             }]
@@ -135,7 +133,12 @@ function crearGrafico(consumo, energiaGenerada, tarifa, ahorro) {
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            return `Costo mensual: $${context.raw.toFixed(2)}`;
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += `$${context.raw.toFixed(2)}`;
+                            return label;
                         }
                     }
                 }
