@@ -95,7 +95,30 @@
     
     </div>
    
- <script src="script.js"></script>
+ <div class="chatbox-container">
+        <div class="chatbox" id="chatbox">
+            <div class="chatbox-header">
+                <i class="fas fa-comments"></i> Contáctanos
+            </div>
+            <div class="chatbox-body" id="chatbox-body">
+                <div class="chat-message bot-message">
+                    ¡Hola! 👋 Me alegra que estés interesado en paneles solares. Para brindarte la mejor atención, necesito algunos datos:
+                </div>
+            </div>
+            <div class="chatbox-input">
+                <input type="text" id="chatInput" placeholder="Escribe tu respuesta aquí..." style="display: none;">
+                <div class="chat-buttons" id="chatButtons">
+                    <button class="chat-btn" onclick="startContact()">Comenzar</button>
+                </div>
+            </div>
+        </div>
+        <button class="chatbox-toggle bounce" id="chatbox-toggle">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+<script src="script.js"></script>
+
 
 </body>
     <footer>
