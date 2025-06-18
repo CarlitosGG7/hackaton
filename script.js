@@ -1,19 +1,9 @@
-// Datos de municipios (simulados para la visualización)Add commentMore actions
-const municipiosData = {
-    "cesar": {
-        "municipios": ["Valledupar", "Aguachica", "Curumaní", "La Paz"],
-        "horas_sol": 5.5
-    },
-    "magdalena": {
-        "municipios": ["Santa Marta", "Ciénaga", "Aracataca", "Fundación"],
-        "horas_sol": 5.8
-    },
-    "atlantico": {
-        "municipios": ["Barranquilla", "Soledad", "Malambo", "Puerto Colombia"],
-        "horas_sol": 5.9
+//Departamentos con su municipios
+// Horas de sol por departamento
 const data = [
     {
         "departamento": "Antioquia",
+        "horasSol": 4.5,
         "municipios": [
             "Medellín",
             "Abejorral",
@@ -140,6 +130,7 @@ const data = [
     },
     {
         "departamento": "Boyacá",
+        "horasSol": 4.1,
         "municipios": [
             "Tununguá",
             "Motavita",
@@ -265,6 +256,7 @@ const data = [
     },
     {
         "departamento": "Córdoba",
+        "horasSol": 5.1,
         "municipios": [
             "San Bernardo del Viento",
             "Montería",
@@ -297,6 +289,7 @@ const data = [
     },
     {
         "departamento": "Chocó",
+        "horasSol": 3.5,
         "municipios": [
             "Istmina",
             "Quibdó",
@@ -330,6 +323,7 @@ const data = [
     },
     {
         "departamento": "Nariño",
+        "horasSol": 3.9,
         "municipios": [
             "Santacruz",
             "Pasto",
@@ -394,6 +388,7 @@ const data = [
     },
     {
         "departamento": "Santander",
+        "horasSol": 4.7,
         "municipios": [
             "Puerto Wilches",
             "Puerto Parra",
@@ -483,6 +478,7 @@ const data = [
     },
     {
         "departamento": "Meta",
+        "horasSol": 5.5,
         "municipios": [
             "Uribe",
             "Villavicencio",
@@ -516,6 +512,7 @@ const data = [
     },
     {
         "departamento": "Atlántico",
+        "horasSol": 5.3,
         "municipios": [
             "Barranquilla",
             "Baranoa",
@@ -541,6 +538,7 @@ const data = [
     },
     {
         "departamento": "Bolívar",
+        "horasSol": 5.4,
         "municipios": [
             "Achí",
             "Arenal",
@@ -587,6 +585,7 @@ const data = [
     },
     {
         "departamento": "Caldas",
+        "horasSol": 4.3,
         "municipios": [
             "Manizales",
             "Aguadas",
@@ -618,6 +617,7 @@ const data = [
     },
     {
         "departamento": "Caquetá",
+        "horasSol": 4.6,
         "municipios": [
             "Florencia",
             "Albania",
@@ -636,6 +636,7 @@ const data = [
     },
     {
         "departamento": "Cauca",
+        "horasSol": 4.0,
         "municipios": [
             "Popayán",
             "Almaguer",
@@ -682,6 +683,7 @@ const data = [
     },
     {
         "departamento": "Cesar",
+        "horasSol": 5.6,
         "municipios": [
             "Valledupar",
             "Aguachica",
@@ -712,6 +714,7 @@ const data = [
     },
     {
         "departamento": "Cundinamarca",
+        "horasSol": 4.2,
         "municipios": [
             "Anapoima",
             "Arbeláez",
@@ -822,6 +825,7 @@ const data = [
     },
     {
         "departamento": "Huila",
+        "horasSol": 5.4,
         "municipios": [
             "Neiva",
             "Acevedo",
@@ -864,6 +868,7 @@ const data = [
     },
     {
         "departamento": "La Guajira",
+        "horasSol": 5.8,
         "municipios": [
             "Riohacha",
             "Albania",
@@ -884,6 +889,7 @@ const data = [
     },
     {
         "departamento": "Magdalena",
+        "horasSol": 5.3,
         "municipios": [
             "Santa Marta",
             "Algarrobo",
@@ -916,6 +922,7 @@ const data = [
     },
     {
         "departamento": "Quindío",
+        "horasSol": 4.3,
         "municipios": [
             "Armenia",
             "Buenavista",
@@ -931,6 +938,7 @@ const data = [
     },
     {
         "departamento": "Risaralda",
+        "horasSol": 4.4,
         "municipios": [
             "Pereira",
             "Apía",
@@ -950,6 +958,7 @@ const data = [
     },
     {
         "departamento": "Sucre",
+        "horasSol": 5.2,
         "municipios": [
             "Sincelejo",
             "Buenavista",
@@ -979,6 +988,7 @@ const data = [
     },
     {
         "departamento": "Tolima",
+        "horasSol": 5.3,
         "municipios": [
             "Alpujarra",
             "Alvarado",
@@ -1025,6 +1035,7 @@ const data = [
     },
     {
         "departamento": "Arauca",
+        "horasSol": 5.3,
         "municipios": [
             "Arauquita",
             "Cravo Norte",
@@ -1037,6 +1048,7 @@ const data = [
     },
     {
         "departamento": "Casanare",
+        "horasSol": 5.5,
         "municipios": [
             "Yopal",
             "Aguazul",
@@ -1057,6 +1069,7 @@ const data = [
     },
     {
         "departamento": "Putumayo",
+        "horasSol": 3.8,
         "municipios": [
             "Mocoa",
             "Colón",
@@ -1073,6 +1086,7 @@ const data = [
     },
     {
         "departamento": "Amazonas",
+        "horasSol": 4.2,
         "municipios": [
             "Leticia",
             "El Encanto",
@@ -1088,6 +1102,7 @@ const data = [
     },
     {
         "departamento": "Guainía",
+        "horasSol": 4.4,
         "municipios": [
             "Inírida",
             "Barranco Minas",
@@ -1102,6 +1117,7 @@ const data = [
     },
     {
         "departamento": "Vaupés",
+        "horasSol": 4.1,
         "municipios": [
             "Mitú",
             "Carurú",
@@ -1113,6 +1129,7 @@ const data = [
     },
     {
         "departamento": "Vichada",
+        "horasSol": 5.0,
         "municipios": [
             "Puerto Carreño",
             "La Primavera",
@@ -1122,6 +1139,7 @@ const data = [
     },
     {
         "departamento": "Guaviare",
+        "horasSol": 4.7,
         "municipios": [
             "Calamar",
             "San José del Guaviare",
@@ -1131,6 +1149,7 @@ const data = [
     },
     {
         "departamento": "Archipiélago de San Andrés, Providencia y Santa Catalina",
+        "horasSol": 5.6,
         "municipios": [
             "Providencia",
             "San Andrés"
@@ -1138,12 +1157,14 @@ const data = [
     },
     {
         "departamento": "Bogotá D.C.",
+        "horasSol": 4.0,
         "municipios": [
             "Bogotá D.C."
         ]
     },
     {
         "departamento": "Norte de Santander",
+        "horasSol": 5.2,
         "municipios": [
             "Silos",
             "Cácota",
@@ -1161,6 +1182,7 @@ const data = [
     },
     {
         "departamento": "Valle del Cauca",
+        "horasSol": 5.1,
         "municipios": [
             "El Dovio",
             "Roldanillo",
@@ -1177,10 +1199,9 @@ const data = [
             "Guacarí"
         ]
     }
-};
 ]
 
-// Datos por estrato (del CSV proporcionado)
+// Funciones para llenar menus desplegables de departamento y municipio
 function cargarDepartamentos() {
   const selectDepto = document.getElementById("departamento");
   selectDepto.innerHTML = "<option value=''>Seleccione</option>";
@@ -1206,75 +1227,25 @@ function cargarMunicipios() {
   });
 }
 
-
-
-
-
-
 // Datos basados en el CSV proporcionado
 const estratosData = {
     "1": {
         "consumo_promedio_kWh": 100,
-        "tarifa_kWh": 250
         "tarifa_kWh": 250,
-        "horas_sol_promedio": 5.2
     },
     "2": {
         "consumo_promedio_kWh": 130,
-        "tarifa_kWh": 300
         "tarifa_kWh": 300,
-        "horas_sol_promedio": 5.5
     },
     "3": {
         "consumo_promedio_kWh": 160,
-        "tarifa_kWh": 350
         "tarifa_kWh": 350,
-        "horas_sol_promedio": 5.8
     }
 };
 
-// Configuración de paneles solares
-const EFICIENCIA_PANEL = 0.18;
-const PRODUCCION_POR_M2 = 0.15;
-
-// Elementos del DOM
-const departamentoSelect = document.getElementById('departamento');
-const municipioSelect = document.getElementById('municipio');
-const estratoSelect = document.getElementById('estrato');
-const consumoSlider = document.getElementById('consumoSlider');
-const consumoInput = document.getElementById('consumo');
-const panelAreaSlider = document.getElementById('panelAreaSlider');
-const panelAreaInput = document.getElementById('panelArea');
-const solarForm = document.getElementById('solarForm');
-
-// Event Listeners
-departamentoSelect.addEventListener('change', cargarMunicipios);
-consumoSlider.addEventListener('input', updateConsumoInput);
-consumoInput.addEventListener('input', updateConsumoSlider);
-panelAreaSlider.addEventListener('input', updatePanelAreaInput);
-panelAreaInput.addEventListener('input', updatePanelAreaSlider);
-solarForm.addEventListener('submit', calcularAhorro);
-// Eficiencia típica de un panel solar (15-20%)
+// Eficiencia general de un panel solar (15-22%)
 const EFICIENCIA_PANEL = 0.18; // 18%
-// Producción por m² de panel (aproximadamente 150W por m²)
-const PRODUCCION_POR_M2 = 0.15; // kW/m²
 
-// Cargar municipios basado en departamento seleccionado
-function cargarMunicipios() {
-    const departamento = departamentoSelect.value;
-    
-    municipioSelect.innerHTML = '<option value="">Seleccione municipio</option>';
-    
-    if (departamento) {
-        municipioSelect.disabled = false;
-        const municipios = municipiosData[departamento].municipios;
-        
-        municipios.forEach(municipio => {
-            const option = document.createElement('option');
-            option.value = municipio.toLowerCase();
-            option.textContent = municipio;
-            municipioSelect.appendChild(option);
-        });
 // Cargar consumo promedio cuando se seleccione estrato
 document.getElementById('estrato').addEventListener('change', function() {
     const estrato = this.value;
@@ -1283,187 +1254,119 @@ document.getElementById('estrato').addEventListener('change', function() {
         document.getElementById('consumoPromedio').textContent = `Consumo promedio para estrato ${estrato}: ${consumoPromedio} kWh/mes`;
         document.getElementById('consumo').value = consumoPromedio;
     } else {
-        municipioSelect.disabled = true;
         document.getElementById('consumoPromedio').textContent = '';
     }
-}
 });
 
-// Sincronizar slider y input de consumo
-function updateConsumoInput() {
-    consumoInput.value = consumoSlider.value;
-}
-
-function updateConsumoSlider() {
-    consumoSlider.value = consumoInput.value;
-}
-
-// Sincronizar slider y input de área de paneles
-function updatePanelAreaInput() {
-    panelAreaInput.value = panelAreaSlider.value;
-}
-
-function updatePanelAreaSlider() {
-    panelAreaSlider.value = panelAreaInput.value;
-}
-
-// Calcular ahorro cuando se envía el formulario
-function calcularAhorro(e) {
 // Manejar el envío del formulario
 document.getElementById('solarForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
+    e.preventDefault(); //Evita que la pag se recargue al enviar el form
     calcularAhorro();
 });
 
+//Funcion de cálculo de ahorro con paneles solares
 function calcularAhorro() {
     // Obtener valores del formulario
-    const estrato = estratoSelect.value;
-    const consumo = parseFloat(consumoInput.value);
-    const panelArea = parseFloat(panelAreaInput.value);
-    const departamento = departamentoSelect.value;
-    const municipio = municipioSelect.value;
-    
-    // Validar selección de estrato
-    if (!estrato) {
-        alert('Por favor seleccione su estrato');
-        return;
-    }
     const estrato = document.getElementById('estrato').value;
     const consumo = parseFloat(document.getElementById('consumo').value);
-    const panelArea = parseFloat(document.getElementById('panelArea').value);
+    const departamento = document.getElementById('departamento').value;
+    
+    //  Valida si estan los datos completos
+    if (!estrato || isNaN(consumo) || !departamento) {
+        alert("Por favor, completa todos los campos antes de calcular.");
+        return;
+    }
 
-    // Obtener datos del estrato
     // Obtener datos del estrato seleccionado
     const estratoInfo = estratosData[estrato];
     const tarifa = estratoInfo.tarifa_kWh;
-    const horasSol = estratoInfo.horas_sol_promedio;
     const consumoPromedio = estratoInfo.consumo_promedio_kWh;
-
-    // Obtener horas de sol basado en departamento (para visualización)
-    const horasSol = departamento ? municipiosData[departamento].horas_sol : 5.5;
     
+    //Obtener horas de sol dependiendo el departamento seleccionado
+    const deptoInfo = data.find(d => d.departamento === departamento);
+    const horasSol = deptoInfo?.horasSol || 4.5;
+
     // Calcular energía generada (kWh/mes)
-    // Fórmula: Horas_sol * Eficiencia_panel * Área * Producción_por_m2 * 30 días
-    const energiaGenerada = horasSol * EFICIENCIA_PANEL * panelArea * PRODUCCION_POR_M2 * 30;
-
-    // Animación de carga de energía
-    animateValue('energyValue', 0, Math.round(energiaGenerada), 1000);
+    // Fórmula: Horas_sol * Eficiencia_panel * 30 días
+    const energiaGenerada = horasSol * EFICIENCIA_PANEL * 30;
     
-    // Calcular ahorro
     // Calcular ahorro (la energía generada se descuenta del consumo)
-    const ahorro = Math.min(energiaGenerada, consumo) * tarifa;
-
+    const ahorro = Math.min(energiaGenerada, consumo) * tarifa; //Evita que el sistema genere más energía de la que se consume
+    
     // Calcular porcentaje de reducción
     const reduccion = (Math.min(energiaGenerada, consumo) / consumo) * 100;
-
+    
     // Mostrar resultados
-    document.getElementById('energiaGenerada').textContent = `${energiaGenerada.toFixed(2)} kWh`;
     document.getElementById('energiaGenerada').textContent = `${energiaGenerada.toFixed(2)} kWh/mes`;
     document.getElementById('ahorroMensual').textContent = `$${ahorro.toFixed(2)}`;
     document.getElementById('reduccion').textContent = `${reduccion.toFixed(2)}%`;
-
-    // Mostrar información de ubicación (visual)
-    document.getElementById('infoDepto').textContent = departamentoSelect.options[departamentoSelect.selectedIndex].text || '--';
-    document.getElementById('infoMunicipio').textContent = municipioSelect.options[municipioSelect.selectedIndex].text || '--';
-    document.getElementById('infoEstrato').textContent = estratoSelect.options[estratoSelect.selectedIndex].text;
-    document.getElementById('infoHorasSol').textContent = `${horasSol} horas/día`;
-    document.getElementById('infoTarifa').textContent = `$${tarifa}`;
-    document.getElementById('infoConsumo').textContent = `${consumo} kWh/mes`;
+    
     // Mostrar información del estrato
     document.getElementById('infoConsumo').textContent = `${consumoPromedio} kWh/mes`;
     document.getElementById('infoTarifa').textContent = tarifa;
     document.getElementById('infoHorasSol').textContent = horasSol;
-
+    
     // Mostrar sección de resultados
     document.getElementById('results').classList.remove('hidden');
-
+    
     // Crear gráfico
     crearGrafico(consumo, energiaGenerada, tarifa, ahorro);
-    
-    // Desplazarse suavemente a los resultados
-    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Animación para el valor de energía generada
-function animateValue(id, start, end, duration) {
-    const obj = document.getElementById(id);
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        obj.innerHTML = Math.floor(progress * (end - start) + start);
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        }
-    };
-    window.requestAnimationFrame(step);
-}
-
-// Crear gráfico de resultados
 function crearGrafico(consumo, energiaGenerada, tarifa, ahorro) {
     const ctx = document.getElementById('savingsChart').getContext('2d');
-
-@@ -182,9 +1292,9 @@ function crearGrafico(consumo, energiaGenerada, tarifa, ahorro) {
+    
+    // Destruir gráfico anterior si existe
+    if (window.solarChart) {
+        window.solarChart.destroy();
+    }
+    
+    const consumoActual = consumo * tarifa;
+    const consumoConPaneles = (consumo - Math.min(energiaGenerada, consumo)) * tarifa;
+    const ahorroCalculado = consumoActual - consumoConPaneles;
+    
     window.solarChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Costo Actual', 'Con Paneles', 'Ahorro'],
             labels: ['Costo actual', 'Costo con paneles', 'Ahorro potencial'],
             datasets: [{
-                label: 'Valor en Pesos ($)',
                 label: 'Valor en pesos ($)',
                 data: [consumoActual, consumoConPaneles, ahorroCalculado],
                 backgroundColor: [
                     'rgba(231, 76, 60, 0.7)',
-@@ -201,54 +1311,40 @@ function crearGrafico(consumo, energiaGenerada, tarifa, ahorro) {
+                    'rgba(46, 204, 113, 0.7)',
+                    'rgba(52, 152, 219, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(231, 76, 60, 1)',
+                    'rgba(46, 204, 113, 1)',
+                    'rgba(52, 152, 219, 1)'
+                ],
+                borderWidth: 1
+            }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Costo ($)',
-                        font: {
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.05)'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
                         text: 'Costo ($)'
                     }
                 }
             },
             plugins: {
-                legend: {
-                    display: false
-                },
                 title: {
                     display: true,
-                    text: 'Comparación de Costos Energéticos Mensuales',
                     text: 'Comparación de costos energéticos',
                     font: {
-                        size: 16,
-                        weight: 'bold'
-                    },
-                    padding: {
-                        top: 10,
-                        bottom: 20
                         size: 16
                     }
                 },
                 tooltip: {
                     callbacks: {
                         label: function(context) {
-                            return `$${context.raw.toFixed(2)}`;
                             let label = context.dataset.label || '';
                             if (label) {
                                 label += ': ';
@@ -1473,9 +1376,6 @@ function crearGrafico(consumo, energiaGenerada, tarifa, ahorro) {
                         }
                     }
                 }
-            },
-            animation: {
-                duration: 1500
             }
         }
     });
@@ -1484,3 +1384,4 @@ function crearGrafico(consumo, energiaGenerada, tarifa, ahorro) {
 window.onload = function () {
   cargarDepartamentos();
 };
+
