@@ -19,29 +19,40 @@
         <p>Simula cuánto puedes ahorrar en tu factura eléctrica instalando paneles solares</p>
         
         <form id="solarForm">
-            <div class="form-group">
-                <label for="estrato">Estrato de vivienda:</label>
-                <select id="estrato" required>
-                    <option value="">Seleccione su estrato...</option>
-                    <option value="1">Estrato 1</option>
-                    <option value="2">Estrato 2</option>
-                    <option value="3">Estrato 3</option>
-                </select>
-            </div>
-
+            <!-- Sección de Ubicación (Departamento y Municipio) -->
+            <div class="ubicacion">
+                <h2><i class="fas fa-map-marker-alt" id="icono-ubicacion"></i> Ubicación</h2>
+        
                 <label for="departamento">Departamento:</label>
-                <select id="departamento" onchange="cargarMunicipios()" required></select>
+                <select id="departamento" class="visual-select" onchange="cargarMunicipios()" required></select>
         
                 <label for="municipio">Municipio:</label>
-                <select id="municipio" required></select>
-
-            <div class="form-group">
-                <label for="consumo">Consumo mensual actual (kWh):</label>
-                <input type="number" id="consumo" required min="50" max="5000">
-                <small id="consumoPromedio"></small>
-            </div> 
+                <select id="municipio" class="visual-select" required></select>
+            </div>
+            <p class="decorativa">---------------------------------------------------------------------------------------------------------------------------</p>
+            <!--- Sección de Estrato de vivienda y Consumo mensual -->
+            <div class="otros-datos">
+                <div class="form-group">
+                    <h2> <i class="fas fa-home" id="icono-casa"></i>Información de tu Vivienda</h2>
+                    <label for="estrato">Estrato de vivienda:</label>
+                    <select id="estrato" class="visual-select" required>
+                        <option value="">Seleccione su estrato...</option>
+                        <option value="1">Estrato 1</option>
+                        <option value="2">Estrato 2</option>
+                        <option value="3">Estrato 3</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="consumo">Consumo mensual actual (kWh):</label>
+                    <input type="number" id="consumo" class="visual-select" required min="50" max="5000">
+                    <small id="consumoPromedio"></small>
+                </div>
+            </div>
+        
             <button type="submit">Calcular Ahorro</button>
         </form>
+        
 
         <div id="results" class="hidden">
            
