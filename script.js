@@ -1345,7 +1345,7 @@ function calcularAhorro() {
     
     // Mostrar resultados
     document.getElementById('energiaGenerada').textContent = `${energiaGenerada.toFixed(2)} kWh/mes`;
-    document.getElementById('ahorroMensual').textContent = `$${ahorro.toFixed(2)}`;
+    document.getElementById('ahorroMensual').textContent = `$${ahorro.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     document.getElementById('reduccion').textContent = `${reduccion.toFixed(2)}%`;
     
     // Mostrar información del estrato
