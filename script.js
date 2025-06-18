@@ -1415,16 +1415,30 @@ function crearGrafico(consumo, energiaGenerada, tarifa, ahorro) {
                             if (label) {
                                 label += ': ';
                             }
-                            label += `$${context.raw.toFixed(2)}`;
+                            label += `$${context.raw.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
                             return label;
                         }
                     }
+                },
+                datalabels: {
+                    display: true,
+                    anchor: 'end',
+                    align: 'top',
+                    color: '#2c3e50',
+                    font: {
+                    weight: 'bold',
+                    size: 14
+                    },
+                    formatter: function(value) {
+                        return `$${value.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+                    }
+                    
                 }
             }
-        }
-    });
+        },
+        plugins: [ChartDataLabels] // Activamos el plugin
+   });
 }
-
 window.onload = function () {
   cargarDepartamentos();
 };
