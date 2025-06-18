@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Solar </title>
+    <title>Calculadora Solar</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Iconos de Font Awesome -->
@@ -14,13 +14,29 @@
         <!-- Encabezado con logo y título -->
         <div class="encabezado">
             <i class="fas fa-solar-panel logo"></i>
-            <h1>Calculadora de Ahorro Solar </h1>
+            <h1>Calculadora de Ahorro Solar</h1>
             <p>Descubre cuánto puedes ahorrar instalando paneles solares</p>
         </div>
         
         <!-- Formulario principal -->
         <div class="contenedor-formulario">
             <form id="formularioSolar">
+                <!-- Grupo para departamento -->
+                <div class="grupo-formulario">
+                    <label for="departamento"><i class="fas fa-map-marker-alt"></i> Departamento:</label>
+                    <select id="departamento" required class="selector-visual">
+                        <option value="">Seleccione departamento</option>
+                    </select>
+                </div>
+                
+                <!-- Grupo para municipio -->
+                <div class="grupo-formulario">
+                    <label for="municipio"><i class="fas fa-city"></i> Municipio:</label>
+                    <select id="municipio" required class="selector-visual" disabled>
+                        <option value="">Seleccione municipio</option>
+                    </select>
+                </div>
+                
                 <!-- Grupo para el consumo eléctrico -->
                 <div class="grupo-formulario">
                     <label for="consumo"><i class="fas fa-bolt"></i> Consumo mensual (kWh):</label>
@@ -65,6 +81,16 @@
                 <div class="animacion-sol">
                     <i class="fas fa-sun"></i>
                 </div>
+            </div>
+            
+            <!-- Información de ubicación -->
+            <div class="info-ubicacion">
+                <p><strong>Departamento:</strong> <span id="infoDepto">--</span></p>
+                <p><strong>Municipio:</strong> <span id="infoMunicipio">--</span></p>
+                <p><strong>Estrato:</strong> <span id="infoEstrato">--</span></p>
+                <p><strong>Horas de sol promedio:</strong> <span id="infoHorasSol">--</span></p>
+                <p><strong>Tarifa eléctrica:</strong> <span id="infoTarifa">--</span></p>
+                <p><strong>Consumo ingresado:</strong> <span id="infoConsumo">--</span></p>
             </div>
             
             <!-- Tarjetas con los resultados -->
