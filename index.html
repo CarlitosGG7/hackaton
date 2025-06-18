@@ -55,6 +55,19 @@
                     <label for="Num_Paneles">¿Cuántos paneles desea instalar?</label>
                     <input type="number" id="paneles" required min="1" max="15">
                     </div>
+
+             <div class="from-paneles">
+
+                <label for="calidad">Seleccione la calidad del panel solar:</label>
+                <select  id="paneles" class="visual-select" required>
+                    <option value="">Seleccione...</option>
+                    <option value="1">Superior - 25% Eficiencia</option>
+                    <option value="2">Alta - 20% Eficiencia</option>
+                    <option value="3">Media - 17% Eficiencia</option>
+                    <option value="4">Baja - 12% Eficiencia</option>
+                </select>
+                
+            </div>
             <button type="submit">Calcular Ahorro</button>
              <!--- Sección de caja de resultados -->
         </form>
