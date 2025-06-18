@@ -1484,20 +1484,13 @@ let chatStep = 0;
                     
                 case 2: // Teléfono
                     userData.telefono = input;
-                    addMessage("¡Excelente! ¿En qué ciudad te encuentras?");
-                    showInput("Ingresa tu ciudad...");
+                    addMessage("¡Excelente! ¿Cuál es el correo de la empresa de energía con la que deseas contactar?");
+                    showInput("Ej: contacto@empresaenergia.com");
                     chatStep = 3;
                     break;
                     
-                case 3: // Ciudad
-                    userData.ciudad = input;
-                    addMessage("¿Cuál es tu consumo promedio mensual de energía? (en kWh)");
-                    showInput("Ej: 300 kWh...");
-                    chatStep = 4;
-                    break;
-                    
-                case 4: // Consumo
-                    userData.consumo = input;
+                case 3: // Correo empresa
+                    userData.correoEmpresa = input;
                     finalizarContacto();
                     break;
             }
@@ -1514,8 +1507,7 @@ let chatStep = 0;
         function finalizarContacto() {
             addMessage(`¡Gracias ${userData.nombre}! 🎉 Hemos recibido tu información:`);
             addMessage(`📞 ${userData.telefono}`);
-            addMessage(`📍 ${userData.ciudad}`);
-            addMessage(`⚡ ${userData.consumo} kWh/mes`);
+            addMessage(`🏢 Empresa a contactar: ${userData.correoEmpresa}`);
             addMessage("Un asesor se pondrá en contacto contigo pronto para ofrecerte la mejor solución solar personalizada. 🌞");
             
             showButtons([
@@ -1539,3 +1531,42 @@ let chatStep = 0;
         document.addEventListener('DOMContentLoaded', function() {
             // El chatbox ya está inicializado con el botón "Comenzar"
         });
+    </script>
+
+<script src="script.js"></script>
+
+</body>
+    <footer>
+    <div class="faq">
+      <h3></i>Preguntas Frecuentes </h3>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">¿Cómo funciona un panel solar?</div>
+        <div class="faq-answer">Un panel solar funciona convirtiendo la luz del sol en electricidad mediante el efecto fotovoltaico: cuando los fotones de la luz solar golpean las células fotovoltaicas (hechas generalmente de silicio), liberan electrones que generan una corriente eléctrica continua (DC). Esta corriente luego se convierte en corriente alterna (AC) mediante un inversor, para que pueda ser utilizada por aparatos eléctricos en el hogar o negocio. La energía puede usarse en el momento, almacenarse en baterías o enviarse a la red eléctrica si hay excedente.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">¿Cuánta energía me podría ahorrar en promedio un panel solar?</div>
+        <div class="faq-answer">la instalación de paneles solares puede generar ahorros significativos en la factura de electricidad, dependiendo del consumo y la capacidad del sistema. Por ejemplo, para una vivienda con un consumo mensual de 800 kWh, el gasto tradicional podría ser de aproximadamente $1.125.000 COP. Con un sistema solar bien dimensionado, este gasto podría reducirse a entre $202.500 y $270.000 COP mensuales, lo que representa un ahorro mensual de entre $855.000 y $1.050.000 COP. Esto se traduce en un ahorro anual de entre $10.260.000 y $12.600.000 COP. Además, con incentivos fiscales como la exención del IVA y la deducción del 50% de la inversión en la declaración de renta, la inversión inicial puede recuperarse en un período de 4 a 7 años, dependiendo de la ubicación y las condiciones específicas del sistema . Una vez recuperada la inversión, el sistema puede seguir generando ahorros durante 25 a 30 años, maximizando la rentabilidad a largo plazo.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">¿Es una buena inversión instalar un panel solar?</div>
+        <div class="faq-answer">Sí, instalar un panel solar generalmente es una muy buena inversión, especialmente a largo plazo. Aunque el costo inicial puede ser alto, los beneficios compensan con el tiempo: puedes reducir entre un 50% y 90% tu factura de energía, y recuperar la inversión en unos 4 a 7 años dependiendo del consumo, ubicación y tamaño del sistema. En Colombia, además, existen beneficios fiscales como la exención del IVA, deducciones en el impuesto de renta y arancel cero para la importación de equipos solares. Después de recuperar lo invertido, el sistema sigue funcionando entre 25 y 30 años, generando energía gratuita, lo cual representa un gran ahorro económico y también un impacto ambiental positivo al reducir tu huella de carbono</div>
+      </div>
+    </div>
+</footer>
+
+<script>
+    function toggleAnswer(clickedQuestion) {
+      const allAnswers = document.querySelectorAll(".faq-answer");
+      const currentAnswer = clickedQuestion.nextElementSibling;
+  
+      allAnswers.forEach(answer => {
+        if (answer !== currentAnswer) {
+          answer.classList.remove("active");
+        }
+      });
+  
+      currentAnswer.classList.toggle("active");
+    }
