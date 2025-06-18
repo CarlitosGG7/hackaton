@@ -94,8 +94,85 @@
         </div>
     
     </div>
-    
-    <script src="script.js"></script>
+    <!-- CHATBOT -->
+  <div id="chatbot-container">
+    <!-- Botón flotante del chatbot -->
+    <div id="chatbot-button" class="chatbot-button">
+      <div class="chat-icon">💬</div>
+      <div class="chat-text">Contactar empresa</div>
+    </div>
+
+    <!-- Ventana del chat -->
+    <div id="chatbot-window" class="chatbot-window">
+      <div class="chatbot-header">
+        <div class="chatbot-title">
+          <div class="chatbot-avatar">👨‍💼</div>
+          <div>
+            <h4>Asistente Virtual</h4>
+            <span>Calculadora de kWh</span>
+          </div>
+        </div>
+        <button id="chatbot-close" class="chatbot-close">×</button>
+      </div>
+
+      <div class="chatbot-messages" id="chatbot-messages">
+        <div class="bot-message">
+          <div class="message-avatar">🤖</div>
+          <div class="message-content">
+            ¡Hola! Soy el asistente virtual de esta calculadora de consumo. ¿Te gustaría contactar con alguna empresa para iniciar tu proceso para comprar paneles solares? Solo necesitaré algunos datos para proceder.
+          </div>
+        </div>
+      </div>
+
+      <div class="chatbot-form">
+        <form id="chatbot-contact-form">
+          <div class="form-step active" id="step-1">
+            <div class="form-group">
+              <label for="chat-name">Tu nombre completo:</label>
+              <input type="text" id="chat-name" name="name" required placeholder="Escribe tu nombre completo">
+            </div>
+            <button type="button" class="next-step-btn" onclick="nextStep(2)">Continuar</button>
+          </div>
+
+          <div class="form-step" id="step-2">
+            <div class="form-group">
+              <label for="chat-email">Tu correo electrónico:</label>
+              <input type="email" id="chat-email" name="email" required placeholder="ejemplo@correo.com">
+            </div>
+            <button type="button" class="next-step-btn" onclick="nextStep(3)">Continuar</button>
+            <button type="button" class="prev-step-btn" onclick="prevStep(1)">Anterior</button>
+          </div>
+
+          <div class="form-step" id="step-3">
+            <div class="form-group">
+              <label for="chat-phone">Tu número de teléfono:</label>
+              <input type="tel" id="chat-phone" name="phone" required placeholder="+57 300 123 4567">
+            </div>
+            <button type="button" class="next-step-btn" onclick="nextStep(4)">Continuar</button>
+            <button type="button" class="prev-step-btn" onclick="prevStep(2)">Anterior</button>
+          </div>
+
+          <div class="form-step" id="step-5">
+            <div class="form-group">
+              <label for="chat-message">Cuéntanos:</label>
+              <textarea id="chat-message" name="message" required placeholder="Describe brevemente tu necesidad..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Enviar mensaje</button>
+            <button type="button" class="prev-step-btn" onclick="prevStep(4)">Anterior</button>
+          </div>
+        </form>
+
+        <div id="chatbot-success" class="success-message" style="display: none;">
+          <div class="success-icon">✅</div>
+          <h4>¡Mensaje enviado exitosamente!</h4>
+          <p>Tu información ha sido enviada directamente a nuestro correo. La empresa te contactará lo más pronto posible.</p>
+          <button onclick="resetChatbot()" class="cta-button">Enviar otro mensaje</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ <script src="script.js"></script>
+
 </body>
     <footer>
     <div class="faq">
