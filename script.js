@@ -1443,21 +1443,6 @@ window.onload = function () {
   cargarDepartamentos();
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  const chatbotButton = document.getElementById('chatbot-button');
-  const chatbotWindow = document.getElementById('chatbot-window');
-  const chatbotClose = document.getElementById('chatbot-close');
 
-  if (chatbotButton && chatbotWindow && chatbotClose) {
-    chatbotButton.addEventListener('click', () => {
-      chatbotWindow.style.display = 'block';
-    });
-    chatbotClose.addEventListener('click', () => {
-      chatbotWindow.style.display = 'none';
-    });
-  } else {
-    console.error('Chatbot: elementos no encontrados en el DOM.');
-  }
-});
 
 
