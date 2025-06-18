@@ -56,6 +56,7 @@ input, select {
     font-size: 16px;
     background-color: white;
     transition: all 0.3s;
+    appearance: none;
     
     background-repeat: no-repeat;
     background-position: right 10px center;
@@ -64,24 +65,31 @@ input, select {
 #departamento.visual-select:focus {
     border-color: #2b99c5; /* Cambia el color del borde */
     outline: none;
-    box-shadow: 0 0 3px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 0 6px rgba(52, 152, 219, 0.2);
 }
 #municipio.visual-select:focus {
     border-color: #2b99c5; /* Cambia el color del borde */
     outline: none;
-    box-shadow: 0 0 3px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 0 6px rgba(52, 152, 219, 0.2);
 }
 #estrato.visual-select:focus {
     border-color: #2b99c5; /* Cambia el color del borde */
     outline: none;
-    box-shadow: 0 0 3px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 0 6px rgba(52, 152, 219, 0.2);
 }
 #consumo.visual-select:focus {
     border-color: #2b99c5; /* Cambia el color del borde */
     outline: none;
-    box-shadow: 0 0 3px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 0 6px rgba(52, 152, 219, 0.2);
 }
 
+.ubicacion {
+    margin-bottom: 30px; 
+}
+.otros-datos {
+    margin-top: 20px;
+    
+}
 
 
 
@@ -238,4 +246,19 @@ small {
 }
 #consumo {
     width: 96% !important;
+}
+#icono-ubicacion{
+    
+    font-size: 31px;
+    color: #629fee;
+    padding-bottom: 10px;
+}
+#icono-casa{
+    
+    font-size: 28 px;
+    color: #629fee;
+    padding-bottom: 10px;
+}
+.decorativa {
+    opacity: 0.2;
 }
