@@ -326,3 +326,21 @@ small {
         font-size: 1.8em;
     }
 }
+/* Sección de información de ubicación */
+.info-ubicacion {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.info-ubicacion p {
+    margin: 8px 0;
+    color: var(--color-oscuro);
+    font-size: 0.95em;
+}
+
+.info-ubicacion strong {
+    color: var(--color-secundario);
+}
