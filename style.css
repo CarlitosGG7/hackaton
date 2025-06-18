@@ -28,7 +28,8 @@ h1 {
     margin-bottom: 10px;
 }
 h2 {
-    text-align: center;
+    text-align: left;
+    
 }
 p {
     text-align: center;
@@ -48,12 +49,44 @@ label {
 }
 
 input, select {
-    width: 98%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
     font-size: 16px;
+    background-color: white;
+    transition: all 0.3s;
+    
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 1em;
 }
+#departamento.visual-select:focus {
+    border-color: #2b99c5; /* Cambia el color del borde */
+    outline: none;
+    box-shadow: 0 0 3px rgba(52, 152, 219, 0.2);
+}
+#municipio.visual-select:focus {
+    border-color: #2b99c5; /* Cambia el color del borde */
+    outline: none;
+    box-shadow: 0 0 3px rgba(52, 152, 219, 0.2);
+}
+#estrato.visual-select:focus {
+    border-color: #2b99c5; /* Cambia el color del borde */
+    outline: none;
+    box-shadow: 0 0 3px rgba(52, 152, 219, 0.2);
+}
+#consumo.visual-select:focus {
+    border-color: #2b99c5; /* Cambia el color del borde */
+    outline: none;
+    box-shadow: 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+
+
+
+
+
 
 button {
     background-color: #5a8dcf;
@@ -202,4 +235,7 @@ small {
     color: #629fee;
     padding-bottom: 10px;
     
+}
+#consumo {
+    width: 96% !important;
 }
