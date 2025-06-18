@@ -6,10 +6,16 @@
     <title>Calculadora Solar - Ahorro con Paneles Solares</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 <body>
     <div class="container">
+      <div class="icono-conteiner">
+         <i class="fas fa-solar-panel logo" id="icono-panel"></i>
+      </div>
         <h1>Calculadora de Ahorro con Paneles Solares</h1>
+        
         <p>Simula cuánto puedes ahorrar en tu factura eléctrica instalando paneles solares</p>
         
         <form id="solarForm">
@@ -31,25 +37,31 @@
 
             <div class="form-group">
                 <label for="consumo">Consumo mensual actual (kWh):</label>
-                <input type="number" id="consumo" required min="50" max="1000">
+                <input type="number" id="consumo" required min="50" max="5000">
                 <small id="consumoPromedio"></small>
             </div> 
             <button type="submit">Calcular Ahorro</button>
         </form>
 
         <div id="results" class="hidden">
-            <h2>Resultados de tu Simulación</h2>
+           
+            <h2><i class="fas fa-chart-line" id="icono-grafico"></i> Resultados de tu Simulación</h2>
+            
             <div class="result-grid">
+                
                 <div class="result-card">
+                    <i class="fas fa-money-bill-wave" id="icono-dinero"></i>
                     <h3>Energía generada estimada</h3>
                     <p id="energiaGenerada">-- kWh/mes</p>
                 </div>
                 <div class="result-card">
+                    <i class="fas fa-percentage" id="icono-porcentaje"></i>
                     <h3>Ahorro mensual estimado</h3>
                     <p id="ahorroMensual">-- $</p>
                 </div>
                 <div class="result-card">
-                    <h3>Reducción en factura</h3>
+                    <i class="fas fa-bolt" id="icono-electricidad"></i>
+                    <h3>Reducción <br>en factura</h3>
                     <p id="reduccion">-- %</p>
                 </div>
             </div>
@@ -65,6 +77,7 @@
                 <p><strong>Horas de sol promedio:</strong> <span id="infoHorasSol">--</span> horas/día</p>
             </div>
         </div>
+    
     </div>
     
     <script src="script.js"></script>
