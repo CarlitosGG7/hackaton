@@ -1302,146 +1302,145 @@ function crearGrafico(consumo, energiaGenerada, tarifa, ahorro) {
 window.onload = function () {
   cargarDepartamentos();
 };
-let chatStep = 0;Add commentMore actions
-    let contactData = {};
+let chatStep = 0;
+        let userData = {};
 
-    // Toggle chatbox
-    document.getElementById('chatbox-toggle').addEventListener('click', function() {
-        const chatbox = document.getElementById('chatbox');
-        const toggle = document.getElementById('chatbox-toggle');
-        
-        chatbox.classList.toggle('active');
-        
-        if (chatbox.classList.contains('active')) {
-            toggle.innerHTML = '<i class="fas fa-times"></i>';
-            toggle.classList.remove('bounce');
-        } else {
-            toggle.innerHTML = '<i class="fas fa-comments"></i>';
-            toggle.classList.add('bounce');
-        }
-    });
-
-    function addMessage(message, isBot = true) {
-        const chatBody = document.getElementById('chatbox-body');
-        const messageDiv = document.createElement('div');
-        messageDiv.className = `chat-message ${isBot ? 'bot-message' : 'user-message'}`;
-        messageDiv.textContent = message;
-        chatBody.appendChild(messageDiv);
-        chatBody.scrollTop = chatBody.scrollHeight;
-    }
-
-    function startContact() {
-        chatStep = 1;
-        const chatButtons = document.getElementById('chatButtons');
-        const chatInput = document.getElementById('chatInput');
-        
-        if (chatButtons) chatButtons.style.display = 'none';
-        if (chatInput) {
-            chatInput.style.display = 'block';
-            chatInput.focus();
-        }
-        
-        addMessage("Perfecto. Para comenzar, ¿cuál es tu nombre completo?");
-    }
-
-    function handleUserInput() {
-        const input = document.getElementById('chatInput');
-        const value = input.value.trim();
-        
-        if (!value) return;
-
-        addMessage(value, false);
-        input.value = '';
-
-        switch(chatStep) {
-            case 1:
-                contactData.nombre = value;
-                chatStep = 2;
-                addMessage("Gracias " + value + ". Ahora, ¿podrías proporcionarme tu número de teléfono?");
-                break;
+        // Toggle del chatbox
+        document.getElementById('chatbox-toggle').addEventListener('click', function() {
+            const chatbox = document.getElementById('chatbox');
+            chatbox.classList.toggle('active');
             
-            case 2:
-                if (!/^\d{10}$/.test(value.replace(/\s|-/g, ''))) {
-                    addMessage("Por favor, ingresa un número de teléfono válido (10 dígitos).");
-                } else {
-                    contactData.telefono = value;
-                    chatStep = 3;
-                    addMessage("Excelente. Por último, ¿cuál es el correo electrónico de la empresa a la que quieres que te contacten?");
-                }
-                break;
-            
-            case 3:
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-                    addMessage("Por favor, ingresa un correo electrónico válido.");
-                } else {
-                    contactData.correoEmpresa = value;
-                    finalizarContacto();
-                }
-                break;
-        }
-    }
+            // Remover bounce cuando se abre
+            if (chatbox.classList.contains('active')) {
+                this.classList.remove('bounce');
+            }
+        });
 
-    function finalizarContacto() {
-        const chatInput = document.getElementById('chatInput');
-        if (chatInput) chatInput.style.display = 'none';
-        
-        const successDiv = document.createElement('div');
-        successDiv.className = 'success-message';
-        successDiv.innerHTML = `
-            <strong>¡Perfecto!</strong><br>
-            Hemos recibido tu información:<br>
-            <strong>Nombre:</strong> ${contactData.nombre}<br>
-            <strong>Teléfono:</strong> ${contactData.telefono}<br>
-            <strong>Correo empresa:</strong> ${contactData.correoEmpresa}<br><br>
-            Nos pondremos en contacto contigo muy pronto. ¡Gracias por tu interés en energía solar! ☀️
-        `;
-        
-        const chatBody = document.getElementById('chatbox-body');
-        if (chatBody) {
-            chatBody.appendChild(successDiv);
+        // Cerrar chatbox al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            const chatbox = document.getElementById('chatbox');
+            const toggle = document.getElementById('chatbox-toggle');
+            
+            if (!chatbox.contains(e.target) && !toggle.contains(e.target)) {
+                chatbox.classList.remove('active');
+            }
+        });
+
+        // Función para agregar mensajes
+        function addMessage(message, isBot = true) {
+            const chatBody = document.getElementById('chatbox-body');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${isBot ? 'bot-message' : 'user-message'}`;
+            messageDiv.textContent = message;
+            chatBody.appendChild(messageDiv);
             chatBody.scrollTop = chatBody.scrollHeight;
         }
 
-        // Aquí puedes agregar código para enviar los datos a tu servidor
-        console.log('Datos de contacto recopilados:', contactData);
-        
-        setTimeout(() => {
-            const chatboxInput = document.querySelector('.chatbox-input');
-            if (chatboxInput) {
-                const newChatBtn = document.createElement('div');
-                newChatBtn.className = 'chat-buttons';
-                newChatBtn.innerHTML = '<button class="chat-btn" onclick="resetChat()">Nueva consulta</button>';
-                chatboxInput.appendChild(newChatBtn);
+        // Función para mostrar botones
+        function showButtons(buttons) {
+            const chatButtons = document.getElementById('chatButtons');
+            const chatInput = document.getElementById('chatInput');
+            
+            chatButtons.innerHTML = '';
+            chatInput.style.display = 'none';
+            
+            buttons.forEach(button => {
+                const btn = document.createElement('button');
+                btn.className = 'chat-btn';
+                btn.textContent = button.text;
+                btn.onclick = button.action;
+                chatButtons.appendChild(btn);
+            });
+        }
+
+        // Función para mostrar input
+        function showInput(placeholder = "Escribe tu respuesta...") {
+            const chatButtons = document.getElementById('chatButtons');
+            const chatInput = document.getElementById('chatInput');
+            
+            chatButtons.innerHTML = '';
+            chatInput.style.display = 'block';
+            chatInput.placeholder = placeholder;
+            chatInput.focus();
+            
+            chatInput.onkeypress = function(e) {
+                if (e.key === 'Enter' && this.value.trim()) {
+                    handleUserInput(this.value.trim());
+                    this.value = '';
+                }
+            };
+        }
+
+        // Manejo de entrada del usuario
+        function handleUserInput(input) {
+            addMessage(input, false);
+            processUserInput(input);
+        }
+
+        // Procesar entrada según el paso
+        function processUserInput(input) {
+            switch(chatStep) {
+                case 1: // Nombre
+                    userData.nombre = input;
+                    addMessage(`Perfecto ${input}! 😊 ¿Cuál es tu número de teléfono?`);
+                    showInput("Ingresa tu teléfono...");
+                    chatStep = 2;
+                    break;
+                    
+                case 2: // Teléfono
+                    userData.telefono = input;
+                    addMessage("¡Excelente! ¿En qué ciudad te encuentras?");
+                    showInput("Ingresa tu ciudad...");
+                    chatStep = 3;
+                    break;
+                    
+                case 3: // Ciudad
+                    userData.ciudad = input;
+                    addMessage("¿Cuál es tu consumo promedio mensual de energía? (en kWh)");
+                    showInput("Ej: 300 kWh...");
+                    chatStep = 4;
+                    break;
+                    
+                case 4: // Consumo
+                    userData.consumo = input;
+                    finalizarContacto();
+                    break;
             }
-        }, 2000);
-    }
-
-    function resetChat() {
-        chatStep = 0;
-        contactData = {};
-        document.getElementById('chatbox-body').innerHTML = `
-            <div class="chat-message bot-message">
-                ¡Hola! 👋 Me alegra que estés interesado en paneles solares. Para brindarte la mejor atención, necesito algunos datos:
-            </div>
-        `;
-        
-        const chatboxInput = document.querySelector('.chatbox-input');
-        if (chatboxInput) {
-            chatboxInput.innerHTML = `
-                <input type="text" id="chatInput" placeholder="Escribe tu respuesta aquí..." style="display: none;">
-                <div class="chat-buttons" id="chatButtons">
-                    <button class="chat-btn" onclick="startContact()">Comenzar</button>
-                </div>
-            `;
         }
-    }
 
-    // Manejar Enter en el input
-    document.addEventListener('keypress', function(e) {
-        const chatInput = document.getElementById('chatInput');
-        if (e.key === 'Enter' && chatInput && chatInput.style.display !== 'none') {
-            handleUserInput();
+        // Iniciar proceso de contacto
+        function startContact() {
+            chatStep = 1;
+            addMessage("¡Perfecto! Para comenzar, ¿cuál es tu nombre?");
+            showInput("Ingresa tu nombre...");
         }
-    });
 
+        // Finalizar contacto
+        function finalizarContacto() {
+            addMessage(`¡Gracias ${userData.nombre}! 🎉 Hemos recibido tu información:`);
+            addMessage(`📞 ${userData.telefono}`);
+            addMessage(`📍 ${userData.ciudad}`);
+            addMessage(`⚡ ${userData.consumo} kWh/mes`);
+            addMessage("Un asesor se pondrá en contacto contigo pronto para ofrecerte la mejor solución solar personalizada. 🌞");
+            
+            showButtons([
+                {
+                    text: "Nueva consulta",
+                    action: () => {
+                        document.getElementById('chatbox-body').innerHTML = `
+                            <div class="chat-message bot-message">
+                                ¡Hola! 👋 Me alegra que estés interesado en paneles solares. Para brindarte la mejor atención, necesito algunos datos:
+                            </div>
+                        `;
+                        userData = {};
+                        chatStep = 0;
+                        showButtons([{text: "Comenzar", action: startContact}]);
+                    }
+                }
+            ]);
+        }
 
+        // Inicializar chatbox
+        document.addEventListener('DOMContentLoaded', function() {
+            // El chatbox ya está inicializado con el botón "Comenzar"
+        });
