@@ -1289,8 +1289,8 @@ const estratosData = {
     }
 };
 
-// Eficiencia general de un panel solar (15-22%)
-const EFICIENCIA_PANEL = 0.18; // 18%
+// Eficiencia general de un panel solar (15-25%)
+const EFICIENCIA_PANEL = 0.25; // 25%
 
 // Cargar consumo promedio cuando se seleccione estrato
 document.getElementById('estrato').addEventListener('change', function() {
@@ -1316,9 +1316,10 @@ function calcularAhorro() {
     const estrato = document.getElementById('estrato').value;
     const consumo = parseFloat(document.getElementById('consumo').value);
     const departamento = document.getElementById('departamento').value;
+    const Num_Paneles= document.getElementById('paneles').value;
     
     //  Valida si estan los datos completos
-    if (!estrato || isNaN(consumo) || !departamento) {
+    if (!estrato || isNaN(consumo) || !departamento || !Num_Paneles) {
         alert("Por favor, completa todos los campos antes de calcular.");
         return;
     }
@@ -1326,15 +1327,15 @@ function calcularAhorro() {
     // Obtener datos del estrato seleccionado
     const estratoInfo = estratosData[estrato];
     const tarifa = estratoInfo.tarifa_kWh;
-    const consumoPromedio = estratoInfo.consumo_promedio_kWh;
+   // const consumoPromedio = estratoInfo.consumo_promedio_kWh;
     
     //Obtener horas de sol dependiendo el departamento seleccionado
     const deptoInfo = data.find(d => d.departamento === departamento);
     const horasSol = deptoInfo?.horasSol || 4.5;
 
     // Calcular energía generada (kWh/mes)
-    // Fórmula: Horas_sol * Eficiencia_panel * 30 días
-    const energiaGenerada = horasSol * EFICIENCIA_PANEL * 30;
+    // Fórmula: Horas_sol * Eficiencia_panel * 30 días * Num_Paneles
+    const energiaGenerada = horasSol * EFICIENCIA_PANEL * 30 * Num_Paneles; // kWh/mes
     
     // Calcular ahorro (la energía generada se descuenta del consumo)
     const ahorro = Math.min(energiaGenerada, consumo) * tarifa; //Evita que el sistema genere más energía de la que se consume
@@ -1348,7 +1349,7 @@ function calcularAhorro() {
     document.getElementById('reduccion').textContent = `${reduccion.toFixed(2)}%`;
     
     // Mostrar información del estrato
-    document.getElementById('infoConsumo').textContent = `${consumoPromedio} kWh/mes`;
+    document.getElementById('infoConsumo').textContent = `${consumo} kWh/mes`;
     document.getElementById('infoTarifa').textContent = tarifa;
     document.getElementById('infoHorasSol').textContent = horasSol;
     
