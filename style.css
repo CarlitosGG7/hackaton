@@ -268,12 +268,18 @@ small {
 .decorativa {
     opacity: 0.2;
 }
+.recargar {
+    float: right;
+    width: 9%;
+    margin-top: -30px; /* opcional, si quieres subirla */
+    margin-left: 10px;
+    }
+
 footer {
     background-color: #ffffffab;
     padding: 20px;
     font-family: Arial, sans-serif;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-
   }
 
   .faq {
