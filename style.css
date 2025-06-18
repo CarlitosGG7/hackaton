@@ -2,7 +2,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
-    background-image:url('panelsolar.jpg') ;
+    background-image:url('assets/fondo2.JPG') ;
     background-size: cover;              /* Ajusta la imagen al tamaño de la pantalla */
     background-repeat: no-repeat;     
     background-position: center center;
