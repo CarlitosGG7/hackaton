@@ -1,133 +1,204 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Solar</title>
+    <title>Calculadora Solar </title>
+    <title>Calculadora Solar - Ahorro con Paneles Solares</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Iconos de Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="contenedor">
-        <!-- Encabezado con logo y título -->
-        <div class="encabezado">
+    <div class="container">
+        <div class="header">
             <i class="fas fa-solar-panel logo"></i>
-            <h1>Calculadora de Ahorro Solar</h1>
-            <p>Descubre cuánto puedes ahorrar instalando paneles solares</p>
+            <h1>Calculadora Solar </h1>
+            <p>Descubre cuánto puedes ahorrar con energía solar</p>
         </div>
-        
-        <!-- Formulario principal -->
-        <div class="contenedor-formulario">
-            <form id="formularioSolar">
-                <!-- Grupo para departamento -->
-                <div class="grupo-formulario">
-                    <label for="departamento"><i class="fas fa-map-marker-alt"></i> Departamento:</label>
-                    <select id="departamento" required class="selector-visual">
-                        <option value="">Seleccione departamento</option>
-                    </select>
+        <h1>Calculadora de Ahorro con Paneles Solares</h1>
+        <p>Simula cuánto puedes ahorrar en tu factura eléctrica instalando paneles solares</p>
+
+        <div class="form-container">
+            <form id="solarForm">
+                <div class="form-section">
+                    <h2><i class="fas fa-map-marker-alt"></i> Ubicación</h2>
+                    <div class="form-group">
+                        <label for="departamento"><i class="fas fa-map"></i> Departamento:</label>
+                        <select id="departamento" class="visual-select">
+                            <option value="">Seleccione...</option>
+                            <option value="cesar">Cesar</option>
+                            <option value="magdalena">Magdalena</option>
+                            <option value="atlantico">Atlántico</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="municipio"><i class="fas fa-city"></i> Municipio:</label>
+                        <select id="municipio" class="visual-select" disabled>
+                            <option value="">Primero seleccione departamento</option>
+                        </select>
+                    </div>
                 </div>
                 
-                <!-- Grupo para municipio -->
-                <div class="grupo-formulario">
-                    <label for="municipio"><i class="fas fa-city"></i> Municipio:</label>
-                    <select id="municipio" required class="selector-visual" disabled>
-                        <option value="">Seleccione municipio</option>
-                    </select>
-                </div>
-                
-                <!-- Grupo para el consumo eléctrico -->
-                <div class="grupo-formulario">
-                    <label for="consumo"><i class="fas fa-bolt"></i> Consumo mensual (kWh):</label>
-                    <input type="number" id="consumo" required min="50" max="1000">
-                    <small>Ingresa tu consumo eléctrico mensual</small>
-                </div>
-                
-                <!-- Grupo para seleccionar estrato -->
-                <div class="grupo-formulario">
-                    <label for="estrato"><i class="fas fa-layer-group"></i> Estrato:</label>
-                    <select id="estrato" required class="selector-visual">
-                        <option value="">Seleccione...</option>
-                        <option value="1">Estrato 1</option>
-                        <option value="2">Estrato 2</option>
-                        <option value="3">Estrato 3</option>
-                    </select>
-                </div>
-                
-                <!-- Grupo para el área de paneles -->
-                <div class="grupo-formulario">
-                    <label for="areaPaneles"><i class="fas fa-solar-panel"></i> Área de paneles (m²):</label>
-                    <div class="contenedor-deslizador">
-                        <input type="range" id="deslizadorAreaPaneles" min="1" max="50" value="10" class="deslizador-visual">
-                        <div class="valor-deslizador">
-                            <input type="number" id="areaPaneles" value="10" min="1" max="100">
+                <div class="form-section">
+                    <h2><i class="fas fa-home"></i> Información de tu Vivienda</h2>
+                    <div class="form-group">
+                        <label for="estrato"><i class="fas fa-layer-group"></i> Estrato:</label>
+                        <select id="estrato" class="visual-select" required>
+                            <option value="">Seleccione...</option>
+                            <option value="1">Estrato 1</option>
+                            <option value="2">Estrato 2</option>
+                            <option value="3">Estrato 3</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="consumo"><i class="fas fa-bolt"></i> Consumo mensual (kWh):</label>
+                        <input type="range" id="consumoSlider" min="50" max="500" value="150" class="visual-slider">
+                        <div class="slider-value">
+                            <input type="number" id="consumo" value="150" min="50" max="1000">
+                            <span>kWh</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="panelArea"><i class="fas fa-solar-panel"></i> Área de paneles (m²):</label>
+                        <input type="range" id="panelAreaSlider" min="1" max="50" value="10" class="visual-slider">
+                        <div class="slider-value">
+                            <input type="number" id="panelArea" value="10" min="1" max="100">
                             <span>m²</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Botón para calcular -->
-                <button type="submit" class="boton-visual">
+                <button type="submit" class="visual-button">
                     <i class="fas fa-calculator"></i> Calcular Ahorro
                 </button>
             </form>
         </div>
         
-        <!-- Sección de resultados (oculta inicialmente) -->
-        <div id="resultados" class="oculto">
-            <div class="encabezado-resultados">
+        <div id="results" class="hidden">
+            <div class="results-header">
                 <h2><i class="fas fa-chart-line"></i> Resultados de tu Simulación</h2>
-                <div class="animacion-sol">
-                    <i class="fas fa-sun"></i>
-                </div>
-            </div>
-            
-            <!-- Información de ubicación -->
-            <div class="info-ubicacion">
-                <p><strong>Departamento:</strong> <span id="infoDepto">--</span></p>
-                <p><strong>Municipio:</strong> <span id="infoMunicipio">--</span></p>
-                <p><strong>Estrato:</strong> <span id="infoEstrato">--</span></p>
-                <p><strong>Horas de sol promedio:</strong> <span id="infoHorasSol">--</span></p>
-                <p><strong>Tarifa eléctrica:</strong> <span id="infoTarifa">--</span></p>
-                <p><strong>Consumo ingresado:</strong> <span id="infoConsumo">--</span></p>
-            </div>
-            
-            <!-- Tarjetas con los resultados -->
-            <div class="rejilla-resultados">
-                <div class="tarjeta-resultado">
-                    <div class="icono-tarjeta">
-                        <i class="fas fa-bolt"></i>
+                <div class="energy-sun">
+                    <div class="sun-animation">
+                        <i class="fas fa-sun"></i>
                     </div>
-                    <h3>Energía Generada</h3>
-                    <p id="energiaGenerada">-- kWh</p>
+                    <span id="energyValue">0</span><span>kWh generados</span>
                 </div>
-                
-                <div class="tarjeta-resultado">
-                    <div class="icono-tarjeta">
+        <form id="solarForm">
+            <div class="form-group">
+                <label for="estrato">Estrato de vivienda:</label>
+                <select id="estrato" required>
+                    <option value="">Seleccione su estrato...</option>
+                    <option value="1">Estrato 1</option>
+                    <option value="2">Estrato 2</option>
+                    <option value="3">Estrato 3</option>
+                </select>
+            </div>
+<!-- CAMBIOOOO✅✅✅✅✅✅✅✅✅✅-->
+                <label for="departamento">Departamento:</label>
+                <select id="departamento" onchange="cargarMunicipios()" required></select>
+        
+                <label for="municipio">Municipio:</label>
+                <select id="municipio" required></select>
+
+
+            <div class="results-grid">
+                <div class="result-card visual-card">
+                    <div class="card-icon">
                         <i class="fas fa-money-bill-wave"></i>
                     </div>
                     <h3>Ahorro Mensual</h3>
-                    <p id="ahorroMensual">-- $</p>
+                    <p id="ahorroMensual">--</p>
+            <div class="form-group">
+                <label for="consumo">Consumo mensual actual (kWh):</label>
+                <input type="number" id="consumo" required min="50" max="1000">
+                <small id="consumoPromedio"></small>
+            </div>
+  <!-- CAMBIOOOO✅✅✅✅✅✅✅✅✅✅-->   
+   
+            <div class="form-group">
+                <label for="panelArea">Área de paneles (m²):</label>
+                <input type="number" id="panelArea" value="10" min="1" max="100">
+            </div>
+
+            <button type="submit">Calcular Ahorro</button>
+        </form>
+
+
+
+        
+        <div id="results" class="hidden">
+            <h2>Resultados de tu Simulación</h2>
+            <div class="result-grid">
+                <div class="result-card">
+                    <h3>Energía generada estimada</h3>
+                    <p id="energiaGenerada">-- kWh/mes</p>
                 </div>
                 
-                <div class="tarjeta-resultado">
-                    <div class="icono-tarjeta">
+                <div class="result-card visual-card">
+                    <div class="card-icon">
                         <i class="fas fa-percentage"></i>
                     </div>
                     <h3>Reducción</h3>
+                    <p id="reduccion">--</p>
+                <div class="result-card">
+                    <h3>Ahorro mensual estimado</h3>
+                    <p id="ahorroMensual">-- $</p>
+                </div>
+                
+                <div class="result-card visual-card">
+                    <div class="card-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Energía Generada</h3>
+                    <p id="energiaGenerada">--</p>
+                <div class="result-card">
+                    <h3>Reducción en factura</h3>
                     <p id="reduccion">-- %</p>
                 </div>
             </div>
-            
-            <!-- Gráfico de resultados -->
-            <div class="contenedor-grafico">
-                <canvas id="graficoAhorros"></canvas>
+
+            <div class="chart-container visual-chart">
+            <div class="chart-container">
+                <canvas id="savingsChart"></canvas>
+            </div>
+
+            <div class="location-info visual-card">
+                <h3><i class="fas fa-info-circle"></i> Datos de tu Ubicación</h3>
+                <div class="info-grid">
+                    <div>
+                        <span>Departamento:</span>
+                        <span id="infoDepto">--</span>
+                    </div>
+                    <div>
+                        <span>Municipio:</span>
+                        <span id="infoMunicipio">--</span>
+                    </div>
+                    <div>
+                        <span>Estrato:</span>
+                        <span id="infoEstrato">--</span>
+                    </div>
+                    <div>
+                        <span>Horas de sol:</span>
+                        <span id="infoHorasSol">--</span>
+                    </div>
+                    <div>
+                        <span>Tarifa kWh:</span>
+                        <span id="infoTarifa">--</span>
+                    </div>
+                    <div>
+                        <span>Consumo:</span>
+                        <span id="infoConsumo">--</span>
+                    </div>
+                </div>
+            <div class="info-card">
+                <h3>Información de tu estrato</h3>
+                <p><strong>Consumo promedio:</strong> <span id="infoConsumo">-- kWh/mes</span></p>
+                <p><strong>Tarifa eléctrica:</strong> $<span id="infoTarifa">--</span> por kWh</p>
+                <p><strong>Horas de sol promedio:</strong> <span id="infoHorasSol">--</span> horas/día</p>
             </div>
         </div>
     </div>
-    
-    <!-- Script principal -->
-    <script src="script.js"></script>
-</body>
-</html>
