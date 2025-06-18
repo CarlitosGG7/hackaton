@@ -268,3 +268,47 @@ small {
 .decorativa {
     opacity: 0.2;
 }
+footer {
+    background-color: #ffffffab;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+  }
+
+  .faq {
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .faq h3 {
+    margin-bottom: 10px;
+  }
+
+  .faq-item {
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.90s ease, padding 1s ease;
+    padding: 0 0;
+  }
+  
+  .faq-answer.active {
+    max-height: 500px; 
+    
+    padding: 10px 0;
+  }
+  .faq-question {
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: color 0.3s;
+  }
+  .faq-question:hover {
+    color: #629fee;
+  }
+  
