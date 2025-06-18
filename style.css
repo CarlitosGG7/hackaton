@@ -259,6 +259,12 @@ small {
     color: #629fee;
     padding-bottom: 10px;
 }
+#icono-info{
+    
+    font-size: 28 px;
+    color: #629fee;
+    padding-bottom: 10px;
+}
 .decorativa {
     opacity: 0.2;
 }
