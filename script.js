@@ -1,5 +1,6 @@
-const data = [
-    {
+// Datos de departamentos y municipios
+const datosColombia = [
+     {
         "departamento": "Antioquia",
         "municipios": [
             "Medellín",
@@ -1165,39 +1166,10 @@ const data = [
         ]
     }
 ]
+];
 
-function cargarDepartamentos() {
-  const selectDepto = document.getElementById("departamento");
-  selectDepto.innerHTML = "<option value=''>Seleccione</option>";
-  data.forEach(d => {
-    const opt = document.createElement("option");
-    opt.value = d.departamento;
-    opt.textContent = d.departamento;
-    selectDepto.appendChild(opt);
-  });
-}
-
-function cargarMunicipios() {
-  const depto = document.getElementById("departamento").value;
-  const municipios = data.find(d => d.departamento === depto)?.municipios || [];
-  const selectMpio = document.getElementById("municipio");
-
-  selectMpio.innerHTML = "<option value=''>Seleccione</option>";
-  municipios.forEach(m => {
-    const opt = document.createElement("option");
-    opt.value = m;
-    opt.textContent = m;
-    selectMpio.appendChild(opt);
-  });
-}
-
-
-
-
-
-
-// Datos basados en el CSV proporcionado
-const estratosData = {
+// Datos por estrato (del CSV proporcionado)
+const datosEstratos = {
     "1": {
         "consumo_promedio_kWh": 100,
         "tarifa_kWh": 250,
@@ -1215,44 +1187,111 @@ const estratosData = {
     }
 };
 
-// Eficiencia típica de un panel solar (15-20%)
-const EFICIENCIA_PANEL = 0.18; // 18%
-// Producción por m² de panel (aproximadamente 150W por m²)
-const PRODUCCION_POR_M2 = 0.15; // kW/m²
+// Configuración técnica de los paneles
+const EFICIENCIA_PANEL = 0.18; // 18% de eficiencia
+const PRODUCCION_POR_M2 = 0.15; // 0.15 kW/m² (150W por m²)
 
-// Cargar consumo promedio cuando se seleccione estrato
-document.getElementById('estrato').addEventListener('change', function() {
+// Elementos del DOM
+const selectDepartamento = document.getElementById('departamento');
+const selectMunicipio = document.getElementById('municipio');
+const selectEstrato = document.getElementById('estrato');
+const inputConsumo = document.getElementById('consumo');
+const deslizadorAreaPaneles = document.getElementById('deslizadorAreaPaneles');
+const inputAreaPaneles = document.getElementById('areaPaneles');
+const formularioSolar = document.getElementById('formularioSolar');
+
+// Cargar departamentos al iniciar
+function cargarDepartamentos() {
+    selectDepartamento.innerHTML = '<option value="">Seleccione departamento</option>';
+    
+    datosColombia.forEach(departamento => {
+        const opcion = document.createElement('option');
+        opcion.value = departamento.departamento;
+        opcion.textContent = departamento.departamento;
+        selectDepartamento.appendChild(opcion);
+    });
+}
+
+// Cargar municipios según departamento seleccionado
+function cargarMunicipios() {
+    const departamentoSeleccionado = selectDepartamento.value;
+    selectMunicipio.innerHTML = '<option value="">Seleccione municipio</option>';
+    
+    if (!departamentoSeleccionado) {
+        selectMunicipio.disabled = true;
+        return;
+    }
+    
+    selectMunicipio.disabled = false;
+    const departamento = datosColombia.find(d => d.departamento === departamentoSeleccionado);
+    
+    if (departamento) {
+        departamento.municipios.forEach(municipio => {
+            const opcion = document.createElement('option');
+            opcion.value = municipio;
+            opcion.textContent = municipio;
+            selectMunicipio.appendChild(opcion);
+        });
+    }
+}
+
+// Conectar deslizador con input para área de paneles
+deslizadorAreaPaneles.addEventListener('input', function() {
+    inputAreaPaneles.value = this.value;
+});
+
+inputAreaPaneles.addEventListener('input', function() {
+    deslizadorAreaPaneles.value = this.value;
+});
+
+// Actualizar consumo al seleccionar estrato
+selectEstrato.addEventListener('change', function() {
     const estrato = this.value;
-    if (estrato) {
-        const consumoPromedio = estratosData[estrato].consumo_promedio_kWh;
-        document.getElementById('consumoPromedio').textContent = `Consumo promedio para estrato ${estrato}: ${consumoPromedio} kWh/mes`;
-        document.getElementById('consumo').value = consumoPromedio;
-    } else {
-        document.getElementById('consumoPromedio').textContent = '';
+    
+    if (estrato && datosEstratos[estrato]) {
+        const consumoPromedio = datosEstratos[estrato].consumo_promedio_kWh;
+        inputConsumo.value = consumoPromedio;
     }
 });
 
 // Manejar el envío del formulario
-document.getElementById('solarForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+formularioSolar.addEventListener('submit', function(evento) {
+    evento.preventDefault();
     calcularAhorro();
 });
 
+// Función principal para calcular el ahorro
 function calcularAhorro() {
     // Obtener valores del formulario
-    const estrato = document.getElementById('estrato').value;
-    const consumo = parseFloat(document.getElementById('consumo').value);
-    const panelArea = parseFloat(document.getElementById('panelArea').value);
+    const estrato = selectEstrato.value;
+    const consumo = parseFloat(inputConsumo.value);
+    const areaPaneles = parseFloat(inputAreaPaneles.value);
+    const departamento = selectDepartamento.value;
+    const municipio = selectMunicipio.value;
+    
+    // Validaciones
+    if (!estrato) {
+        mostrarError('Por favor selecciona tu estrato');
+        return;
+    }
+    
+    if (!departamento || !municipio) {
+        mostrarError('Por favor selecciona tu departamento y municipio');
+        return;
+    }
+    
+    if (isNaN(consumo) {
+        mostrarError('Por favor ingresa un consumo válido');
+        return;
+    }
     
     // Obtener datos del estrato seleccionado
-    const estratoInfo = estratosData[estrato];
-    const tarifa = estratoInfo.tarifa_kWh;
-    const horasSol = estratoInfo.horas_sol_promedio;
-    const consumoPromedio = estratoInfo.consumo_promedio_kWh;
+    const datosEstrato = datosEstratos[estrato];
+    const tarifa = datosEstrato.tarifa_kWh;
+    const horasSol = datosEstrato.horas_sol_promedio;
     
     // Calcular energía generada (kWh/mes)
-    // Fórmula: Horas_sol * Eficiencia_panel * Área * Producción_por_m2 * 30 días
-    const energiaGenerada = horasSol * EFICIENCIA_PANEL * panelArea * PRODUCCION_POR_M2 * 30;
+    const energiaGenerada = horasSol * EFICIENCIA_PANEL * areaPaneles * PRODUCCION_POR_M2 * 30;
     
     // Calcular ahorro (la energía generada se descuenta del consumo)
     const ahorro = Math.min(energiaGenerada, consumo) * tarifa;
@@ -1260,46 +1299,60 @@ function calcularAhorro() {
     // Calcular porcentaje de reducción
     const reduccion = (Math.min(energiaGenerada, consumo) / consumo) * 100;
     
-    // Mostrar resultados
-    document.getElementById('energiaGenerada').textContent = `${energiaGenerada.toFixed(2)} kWh/mes`;
+    // Mostrar resultados en la interfaz
+    document.getElementById('energiaGenerada').textContent = `${energiaGenerada.toFixed(2)} kWh`;
     document.getElementById('ahorroMensual').textContent = `$${ahorro.toFixed(2)}`;
     document.getElementById('reduccion').textContent = `${reduccion.toFixed(2)}%`;
     
-    // Mostrar información del estrato
-    document.getElementById('infoConsumo').textContent = `${consumoPromedio} kWh/mes`;
-    document.getElementById('infoTarifa').textContent = tarifa;
-    document.getElementById('infoHorasSol').textContent = horasSol;
+    // Mostrar información de ubicación
+    document.getElementById('infoDepto').textContent = departamento;
+    document.getElementById('infoMunicipio').textContent = municipio;
+    document.getElementById('infoEstrato').textContent = `Estrato ${estrato}`;
+    document.getElementById('infoHorasSol').textContent = `${horasSol} horas/día`;
+    document.getElementById('infoTarifa').textContent = `$${tarifa} por kWh`;
+    document.getElementById('infoConsumo').textContent = `${consumo} kWh/mes`;
     
     // Mostrar sección de resultados
-    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('resultados').classList.remove('oculto');
     
-    // Crear gráfico
+    // Crear gráfico de resultados
     crearGrafico(consumo, energiaGenerada, tarifa, ahorro);
+    
+    // Desplazarse suavemente a los resultados
+    document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
 }
 
+// Función para mostrar mensajes de error
+function mostrarError(mensaje) {
+    alert(mensaje); // Puedes reemplazar esto con un mensaje más elegante en la UI
+}
+
+// Función para crear el gráfico de resultados
 function crearGrafico(consumo, energiaGenerada, tarifa, ahorro) {
-    const ctx = document.getElementById('savingsChart').getContext('2d');
+    const ctx = document.getElementById('graficoAhorros').getContext('2d');
     
     // Destruir gráfico anterior si existe
-    if (window.solarChart) {
-        window.solarChart.destroy();
+    if (window.graficoSolar) {
+        window.graficoSolar.destroy();
     }
     
+    // Calcular valores para el gráfico
     const consumoActual = consumo * tarifa;
     const consumoConPaneles = (consumo - Math.min(energiaGenerada, consumo)) * tarifa;
     const ahorroCalculado = consumoActual - consumoConPaneles;
     
-    window.solarChart = new Chart(ctx, {
+    // Crear nuevo gráfico
+    window.graficoSolar = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Costo actual', 'Costo con paneles', 'Ahorro potencial'],
+            labels: ['Costo Actual', 'Con Paneles', 'Ahorro'],
             datasets: [{
-                label: 'Valor en pesos ($)',
+                label: 'Valor en Pesos ($)',
                 data: [consumoActual, consumoConPaneles, ahorroCalculado],
                 backgroundColor: [
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(46, 204, 113, 0.7)',
-                    'rgba(52, 152, 219, 0.7)'
+                    'rgba(231, 76, 60, 0.7)',    // Rojo para costo actual
+                    'rgba(46, 204, 113, 0.7)',    // Verde para con paneles
+                    'rgba(52, 152, 219, 0.7)'     // Azul para ahorro
                 ],
                 borderColor: [
                     'rgba(231, 76, 60, 1)',
@@ -1311,39 +1364,63 @@ function crearGrafico(consumo, energiaGenerada, tarifa, ahorro) {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             scales: {
                 y: {
                     beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'Costo ($)'
+                        text: 'Costo ($)',
+                        font: {
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false
                     }
                 }
             },
             plugins: {
+                legend: {
+                    display: false
+                },
                 title: {
                     display: true,
-                    text: 'Comparación de costos energéticos',
+                    text: 'Comparación de Costos Energéticos Mensuales',
                     font: {
-                        size: 16
+                        size: 16,
+                        weight: 'bold'
+                    },
+                    padding: {
+                        top: 10,
+                        bottom: 20
                     }
                 },
                 tooltip: {
                     callbacks: {
-                        label: function(context) {
-                            let label = context.dataset.label || '';
-                            if (label) {
-                                label += ': ';
-                            }
-                            label += `$${context.raw.toFixed(2)}`;
-                            return label;
+                        label: function(contexto) {
+                            return `$${contexto.raw.toFixed(2)}`;
                         }
                     }
                 }
+            },
+            animation: {
+                duration: 1500
             }
         }
     });
 }
+
+// Inicializar la aplicación al cargar la página
+window.addEventListener('DOMContentLoaded', function() {
+    cargarDepartamentos();
+    selectDepartamento.addEventListener('change', cargarMunicipios);
+});
 
 window.onload = function () {
   cargarDepartamentos();
