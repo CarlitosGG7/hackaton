@@ -93,6 +93,10 @@ input, select {
 .logo{
     width: 10%;
 }
+.from-paneles {
+    margin-bottom: 6%;
+}
+
 
 button {
     background-color: #5a8dcf;
