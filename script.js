@@ -4,16 +4,16 @@ const data = [
     {
   "departamento": "Amazonas",
   "municipios": [
-    { "nombre": "El Encanto", "horasSol": 4.1 },
-    { "nombre": "La Chorrera", "horasSol": 4.3 },
-    { "nombre": "La Pedrera", "horasSol": 4.2 },
-    { "nombre": "La Victoria", "horasSol": 4.2 },
-    { "nombre": "Leticia", "horasSol": 4.5 },           // capital, mejor medida
-    { "nombre": "Puerto Alegría", "horasSol": 4.1 },
-    { "nombre": "Puerto Arica", "horasSol": 4.0 },
-    { "nombre": "Puerto Nariño", "horasSol": 4.3 },
-    { "nombre": "Puerto Santander", "horasSol": 4.2 },
-    { "nombre": "Tarapacá", "horasSol": 4.2 }
+   "El Encanto", "horasSol": 4.1,
+    "La Chorrera", "horasSol": 4.3 ,
+    "La Pedrera", "horasSol": 4.2 ,
+     "La Victoria", "horasSol": 4.2 ,
+    "Leticia", "horasSol": 4.5 ,           // capital, mejor medida
+    "Puerto Alegría", "horasSol": 4.1 ,
+   "Puerto Arica", "horasSol": 4.0 ,
+    "Puerto Nariño", "horasSol": 4.3 ,
+   "Puerto Santander", "horasSol": 4.2,
+    "Tarapacá", "horasSol": 4.2 
   ]
 },
 
